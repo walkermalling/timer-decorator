@@ -1,9 +1,10 @@
 var assert = require('assert');
 var timer = require('../index');
+var emitter = require('../index').reporter;
+var util = require('util');
+var events = require('events');
 
-
-
-describe('timer decorator', function () {
+describe('Timer Decorator\n', function () {
 
   it('should return the decorated function\'s return value', function () {
     function x (param) { return param; }
@@ -21,6 +22,7 @@ describe('timer decorator', function () {
     var x = scopeTestHelper();
     var inScope = 'bwahahah!';
     var y = timer(x);
+
     assert.equal(x(), y());
   });
 
@@ -29,17 +31,27 @@ describe('timer decorator', function () {
     var y = timer(x, 'myFunc'); // check console
   });
 
-  it('should avg multiple calls', function () {
-    function x (param) { return param; }
-    var y = timer(x);
-    for (var k = 0; k < 100; k++) {
-      y();
+  it('should handle concurrent timers', function () {
+    var x = function (param) { return param; };
+    var y = function (param) { return param};
+    var a = timer(x, 'one');
+    var b = timer(y, 'two');
+    for (var k = 0; k < 3; k++) {
+      a();
+      b();
     }
   });
 
-
-
-
+  it('exports the event emitter', function () {
+    function x (param) { return param; }
+    var y = timer(x, 'myFunc');
+    var increment = 0;
+    emitter.on('report', function(){
+      increment++;
+    });
+    y('hi');
+    assert.equal(increment,1);
+  });
 
 });
 

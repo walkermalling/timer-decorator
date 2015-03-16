@@ -1,5 +1,5 @@
-var util = require('util');
 var events = require('events');
+var util = require('util');
 
 function Reporter () {
   events.EventEmitter.call(this);
@@ -9,33 +9,26 @@ util.inherits(Reporter, events.EventEmitter);
 
 var reporter = new Reporter();
 
-var ledger = [];
-
 reporter.on('report', function (report) {
-  
-  console.log(util.format(
-      '[TIME] %s took %d ms to complete',
-      report.functionName,
-      report.duration
-    ));
 
-  if (ledger[report.functionName]) {
-    ledger[report.functionName].push(report.duration);
-  } else {
-    ledger[report.functionName] = [report.duration];
-  }
+  report.store.push(report.duration);
+
+  var avg = (report.store.reduce(function (a, b) {
+      return a + b
+    }) / report.store.length);
 
   console.log(util.format(
-      '[INFO] %s averages %d ms', 
-      report.functionName,
-      (ledger[report.functionName].reduce(function (a, b) {
-        return a + b
-      }) / ledger[report.functionName].length)
-    ));
-  
+    '[TIMER] "%s"\t%dms\t(%d avg)',
+    report.functionName,
+    report.duration,
+    avg
+  ));
+
 });
 
 function timerDecorator (fn, name) {
+
+  var store = [];
 
   var fnName;
   if (name) {
@@ -53,7 +46,8 @@ function timerDecorator (fn, name) {
 
     reporter.emit('report', {
       functionName: fnName,
-      duration: ms
+      duration: ms,
+      store: store
     });
 
     return result;
@@ -61,4 +55,4 @@ function timerDecorator (fn, name) {
 }
 
 module.exports = timerDecorator;
-// export hook to create listener
+module.exports.reporter = reporter;
