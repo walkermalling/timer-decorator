@@ -1,0 +1,27 @@
+{
+  "name": "timer-decorator",
+  "version": "0.0.1",
+  "description": "A decorator to help time your process in high resolution",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/walkermalling/timer-decorator.git"
+  },
+  "keywords": [
+    "timer",
+    "decorator",
+    "helper"
+  ],
+  "author": "Walker Malling",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/walkermalling/timer-decorator/issues"
+  },
+  "homepage": "https://github.com/walkermalling/timer-decorator",
+  "devDependencies": {
+    "mocha": "^2.2.1"
+  }
+}
