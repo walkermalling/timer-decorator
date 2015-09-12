@@ -1,7 +1,8 @@
 var events = require('events');
-var util = require('util');
+var util   = require('util');
 
-function Reporter () {
+function Reporter (logger) {
+  this.log = logger || console.log;
   events.EventEmitter.call(this);
 }
 
@@ -17,7 +18,7 @@ reporter.on('report', function (report) {
       return a + b
     }) / report.store.length);
 
-  console.log(util.format(
+  this.log(util.format(
     '[TIMER] "%s"\t%dms\t(%d avg)',
     report.functionName,
     report.duration,
@@ -55,4 +56,3 @@ function timerDecorator (fn, name) {
 }
 
 module.exports = timerDecorator;
-module.exports.reporter = reporter;
