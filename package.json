@@ -1,6 +1,6 @@
 {
   "name": "hrtime-decorator",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A decorator to help measure any routine in high resolution",
   "main": "index.js",
   "scripts": {
