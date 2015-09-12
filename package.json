@@ -1,6 +1,6 @@
 {
   "name": "timer-decorator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A decorator to help measure any routine in high resolution",
   "main": "index.js",
   "scripts": {
