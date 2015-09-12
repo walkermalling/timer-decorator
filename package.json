@@ -1,6 +1,6 @@
 {
   "name": "timer-decorator",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A decorator to help time your process in high resolution",
   "main": "index.js",
   "scripts": {
