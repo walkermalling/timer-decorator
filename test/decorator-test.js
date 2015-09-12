@@ -1,8 +1,8 @@
-var assert = require('assert');
-var timer = require('../index');
+var assert  = require('assert');
+var timer   = require('../index');
 var emitter = require('../index').reporter;
-var util = require('util');
-var events = require('events');
+var util    = require('util');
+var events  = require('events');
 
 describe('Timer Decorator\n', function () {
 
@@ -15,7 +15,7 @@ describe('Timer Decorator\n', function () {
   it('should not screw up context', function () {
     function scopeTestHelper () {
       var inScope = 'im closed scope!';
-      return function x () { 
+      return function x () {
         return inScope + ' cool.';
       }
     }
@@ -54,4 +54,3 @@ describe('Timer Decorator\n', function () {
   });
 
 });
-

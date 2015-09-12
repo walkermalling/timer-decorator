@@ -22,6 +22,6 @@
   },
   "homepage": "https://github.com/walkermalling/timer-decorator",
   "devDependencies": {
-    "mocha": "^2.2.1"
+    "mocha": "^2.3.2"
   }
 }

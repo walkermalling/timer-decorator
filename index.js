@@ -1,8 +1,9 @@
 var events = require('events');
 var util   = require('util');
 
-function Reporter (logger) {
-  this.log = logger || console.log;
+function Reporter (options) {
+  var options = options || {};
+  this.log = options.logger || console.log;
   events.EventEmitter.call(this);
 }
 
@@ -55,4 +56,5 @@ function timerDecorator (fn, name) {
   }
 }
 
-module.exports = timerDecorator;
+module.exports          = timerDecorator;
+module.exports.reporter = reporter;
