@@ -17,7 +17,7 @@ describe('Timer Decorator\n', function () {
       var inScope = 'im closed scope!';
       return function x () {
         return inScope + ' cool.';
-      }
+      };
     }
     var x = scopeTestHelper();
     var inScope = 'bwahahah!';
@@ -33,13 +33,13 @@ describe('Timer Decorator\n', function () {
 
   it('should handle concurrent timers', function () {
     var x = function (param) { return param; };
-    var y = function (param) { return param};
+    var y = function (param) { return param; };
     var a = timer(x, 'one');
     var b = timer(y, 'two');
     for (var k = 0; k < 3; k++) {
       a();
       b();
-    }
+    } // check console
   });
 
   it('exports the event emitter', function () {

@@ -1,9 +1,12 @@
 var events = require('events');
 var util   = require('util');
 
-function Reporter (options) {
-  var options = options || {};
-  this.log = options.logger || console.log;
+function Reporter () {
+  var self = this;
+  self.log = console.log;
+  self.setLogger = function (customLogger) {
+    self.log = customLogger;
+  };
   events.EventEmitter.call(this);
 }
 
@@ -16,7 +19,7 @@ reporter.on('report', function (report) {
   report.store.push(report.duration);
 
   var avg = (report.store.reduce(function (a, b) {
-      return a + b
+      return a + b;
     }) / report.store.length);
 
   this.log(util.format(
@@ -53,7 +56,7 @@ function timerDecorator (fn, name) {
     });
 
     return result;
-  }
+  };
 }
 
 module.exports          = timerDecorator;

@@ -7,6 +7,8 @@ Decorate any function to produce simple, high resolution logs of the time it too
   * automatically averages durations
   * inject a custom logger
 
+This is for testing only, not for production!
+
 ### Example
 
 ```
@@ -32,9 +34,18 @@ for (var k = 10; k > 0; k--) {
 
 ```
 
+### Use custom logger
+
+```
+function myCustomLogger (msg) {
+  console.log(msg.toUpperCase());
+}
+
+timer.reporter.setLogger(myCustomLogger);
+
+```
 
 #### TODO:
 
- * Implement callback option to hook into the event listener
- * place a cap on timer history to avoid memory leak
- * test coverage
+ * better tests
+ * investigate safeguard against memory leak in the decorator's `store` array
