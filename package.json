@@ -23,5 +23,9 @@
   "homepage": "https://github.com/walkermalling/timer-decorator",
   "devDependencies": {
     "mocha": "^2.3.2"
+  },
+  "dependencies": {
+    "lodash": "^3.10.1",
+    "sparkline": "^0.1.2"
   }
 }
