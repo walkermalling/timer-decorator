@@ -1,6 +1,8 @@
 # Timer Decorator
 
-Decorate any function to produce simple, high resolution logs of the time it took to complete the function.
+Decorate any function to produce simple, high resolution logs of execution duration.
+
+#### bullet points
 
   * uses node's `process.hrtime`
   * emits duration reports so you can time multiple processes at once
